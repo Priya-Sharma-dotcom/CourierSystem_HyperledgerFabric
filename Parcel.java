@@ -50,6 +50,14 @@ public abstract class Parcel {
         return status;
     }
 
+    public String setStatus(String status){
+        this.status=status;
+    }
+
+    public String setReceiver(String receiver){
+        this.receiver=receiver;
+    }
+
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) return true;
