@@ -1,5 +1,6 @@
 package _CourierSystem;
 
+import java.util.Objects;
 import org.hyperledger.fabric.contract.annotation.DataType;
 import org.hyperledger.fabric.contract.annotation.Property;
 import com.owlike.genson.annotation.JsonProperty;
@@ -8,27 +9,31 @@ import com.owlike.genson.annotation.JsonProperty;
 public final class ExpressParcel extends Parcel {
 
     @Property
+    public final double expressFee;
+
+    @Property
     public final String deliveryTime;
 
     @Property
     public final boolean priorityHandling;
-
-    @Property
-    public final double expressFee;
 
     public ExpressParcel(
         @JsonProperty("id") final String id,
         @JsonProperty("sender") final String sender,
         @JsonProperty("receiver") final String receiver,
         @JsonProperty("status") final String status,
+        @JsonProperty("expressFee") final double expressFee,
         @JsonProperty("deliveryTime") final String deliveryTime,
-        @JsonProperty("priorityHandling") final boolean priorityHandling,
-        @JsonProperty("expressFee") final double expressFee
+        @JsonProperty("priorityHandling") final boolean priorityHandling
     ) {
         super(id, sender, receiver, status);
+        this.expressFee = expressFee;
         this.deliveryTime = deliveryTime;
         this.priorityHandling = priorityHandling;
-        this.expressFee = expressFee;
+    }
+
+    public double getExpressFee() {
+        return expressFee;
     }
 
     public String getDeliveryTime() {
@@ -39,13 +44,9 @@ public final class ExpressParcel extends Parcel {
         return priorityHandling;
     }
 
-    public double getExpressFee() {
-        return expressFee;
-    }
-
     @Override
     public int hashCode() {
-        return id.hashCode() + sender.hashCode() + receiver.hashCode() + .hashCode() + deliveryTime.hashCode();
+        return Objects.hash(super.hashCode(), expressFee, deliveryTime, priorityHandling);
     }
 
     @Override
@@ -55,8 +56,8 @@ public final class ExpressParcel extends Parcel {
                "sender=\"" + sender + "\", " +
                "receiver=\"" + receiver + "\", " +
                "status=\"" + status + "\", " +
+               "expressFee=" + expressFee + ", " +
                "deliveryTime=\"" + deliveryTime + "\", " +
-               "priorityHandling=\"" + priorityHandling + "\", " +
-               "expressFee=\"" + expressFee + "\" }";
+               "priorityHandling=" + priorityHandling + " }";
     }
 }
