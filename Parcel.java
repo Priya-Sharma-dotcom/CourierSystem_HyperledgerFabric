@@ -17,10 +17,10 @@ public abstract class Parcel {
     public final String sender;
 
     @Property
-    public final String receiver;
+    public String receiver;
 
     @Property
-    public final String status;
+    public String status;
 
     public Parcel(
         @JsonProperty("id") final String id,
