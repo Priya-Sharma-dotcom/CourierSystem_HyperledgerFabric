@@ -6,6 +6,7 @@ import org.hyperledger.fabric.shim.ChaincodeException;
 import org.hyperledger.fabric.shim.ChaincodeStub;
 
 import com.owlike.genson.Genson;
+import com.owlike.genson.GensonBuilder;
 
 import java.util.*;
 
@@ -18,7 +19,9 @@ import java.util.*;
 @Default
 public class ParcelContract implements ContractInterface {
 
-    Genson genson = new Genson();
+	Genson genson = new GensonBuilder()
+		    .useClassMetadata(true)
+		    .create();
 
     enum Errors { parcel_not_found, parcel_already_exists }
 
@@ -90,7 +93,7 @@ public class ParcelContract implements ContractInterface {
         if (stub.getStringState(id).isEmpty()) {
             String errMsg = String.format("parcel at id %s not found", id);
             System.out.println(errMsg);
-            throw new ChaincodeException(errMsg, Errors.parcel_not_found.toString());
+            throw new ChaincodeException(errMsg, Errors.parcel_not_found.name());
         }
 
         Parcel parcel = genson.deserialize(stub.getStringState(id), Parcel.class);
