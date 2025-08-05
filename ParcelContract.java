@@ -1,3 +1,5 @@
+package _CourierSystem;
+
 import org.hyperledger.fabric.contract.*;
 import org.hyperledger.fabric.contract.annotation.*;
 import org.hyperledger.fabric.shim.ChaincodeException;
