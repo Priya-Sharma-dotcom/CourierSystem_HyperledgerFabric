@@ -50,11 +50,11 @@ public abstract class Parcel {
         return status;
     }
 
-    public String setStatus(String status){
+    public void setStatus(String status){
         this.status=status;
     }
 
-    public String setReceiver(String receiver){
+    public void setReceiver(String receiver){
         this.receiver=receiver;
     }
 
