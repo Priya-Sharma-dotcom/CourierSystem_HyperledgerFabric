@@ -1,8 +1,8 @@
 package _CourierSystem;
 
+import java.util.Objects;
 import org.hyperledger.fabric.contract.annotation.DataType;
 import org.hyperledger.fabric.contract.annotation.Property;
-
 import com.owlike.genson.annotation.JsonProperty;
 
 @DataType
@@ -24,6 +24,11 @@ public final class StandardParcel extends Parcel {
 
     public String getDeliveryDate() {
         return deliveryDate;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), deliveryDate);
     }
 
     @Override
