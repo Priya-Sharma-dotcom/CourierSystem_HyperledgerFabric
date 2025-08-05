@@ -22,7 +22,7 @@ public class ParcelContract implements ContractInterface {
 
     enum Errors { parcel_not_found, parcel_already_exists }
 
-    @Transaction(intent = Transaction.Type.Submit)
+    @Transaction
     public void initLedger(final Context ctx) {
         ChaincodeStub stub = ctx.getStub();
         List<Parcel> parcels = new ArrayList<>();
@@ -37,7 +37,7 @@ public class ParcelContract implements ContractInterface {
         }
     }
 
-    @Transaction(intent = Transaction.Type.Submit)
+    @Transaction
     public Parcel addParcel(final Context ctx, final String id, final String sender, final String receiver,
                             final String status, final String type,
                             final String deliveryTime, final String priorityHandling, final String expressFee,
@@ -49,7 +49,7 @@ public class ParcelContract implements ContractInterface {
         if (!stub.getStringState(id).isEmpty()) {
             String errorMsg = String.format("parcel already exists at id %s", id);
             System.out.println(errorMsg);
-            throw new ChaincodeException(errorMsg, Errors.parcel_already_exists);
+            throw new ChaincodeException(errorMsg, Errors.parcel_already_exists.name());
         }
 
         Parcel parcel;
@@ -83,14 +83,14 @@ public class ParcelContract implements ContractInterface {
         return parcel;
     }
 
-    @Transaction(intent = Transaction.Type.Submit)
+    @Transaction
     public Parcel updateParcelStatus(final Context ctx, final String id, final String newStatus) {
         ChaincodeStub stub = ctx.getStub();
 
         if (stub.getStringState(id).isEmpty()) {
             String errMsg = String.format("parcel at id %s not found", id);
             System.out.println(errMsg);
-            throw new ChaincodeException(errMsg, Errors.parcel_not_found);
+            throw new ChaincodeException(errMsg, Errors.parcel_not_found.toString();
         }
 
         Parcel parcel = genson.deserialize(stub.getStringState(id), Parcel.class);
@@ -99,14 +99,14 @@ public class ParcelContract implements ContractInterface {
         return parcel;
     }
 
-    @Transaction(intent = Transaction.Type.Submit)
+    @Transaction
     public Parcel transferParcelOwnership(final Context ctx, final String id, final String newReceiver) {
         ChaincodeStub stub = ctx.getStub();
 
         if (stub.getStringState(id).isEmpty()) {
             String errMsg = String.format("parcel at id %s not found", id);
             System.out.println(errMsg);
-            throw new ChaincodeException(errMsg, Errors.parcel_not_found);
+            throw new ChaincodeException(errMsg, Errors.parcel_not_found.toString();
         }
 
         Parcel parcel = genson.deserialize(stub.getStringState(id), Parcel.class);
@@ -115,14 +115,14 @@ public class ParcelContract implements ContractInterface {
         return parcel;
     }
 
-    @Transaction(intent = Transaction.Type.Evaluate)
+    @Transaction
     public Parcel queryParcelById(final Context ctx, final String id) {
         ChaincodeStub stub = ctx.getStub();
 
         if (stub.getStringState(id) == null || stub.getStringState(id).isEmpty()) {
             String errMsg = String.format("parcel not found at id %s", id);
             System.out.println(errMsg);
-            throw new ChaincodeException(errMsg, Errors.parcel_not_found);
+            throw new ChaincodeException(errMsg, Errors.parcel_not_found.toString();
         }
 
         Parcel parcel = genson.deserialize(stub.getStringState(id), Parcel.class);
