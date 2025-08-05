@@ -90,7 +90,7 @@ public class ParcelContract implements ContractInterface {
         if (stub.getStringState(id).isEmpty()) {
             String errMsg = String.format("parcel at id %s not found", id);
             System.out.println(errMsg);
-            throw new ChaincodeException(errMsg, Errors.parcel_not_found.toString();
+            throw new ChaincodeException(errMsg, Errors.parcel_not_found.toString());
         }
 
         Parcel parcel = genson.deserialize(stub.getStringState(id), Parcel.class);
@@ -106,7 +106,7 @@ public class ParcelContract implements ContractInterface {
         if (stub.getStringState(id).isEmpty()) {
             String errMsg = String.format("parcel at id %s not found", id);
             System.out.println(errMsg);
-            throw new ChaincodeException(errMsg, Errors.parcel_not_found.toString();
+            throw new ChaincodeException(errMsg, Errors.parcel_not_found.toString());
         }
 
         Parcel parcel = genson.deserialize(stub.getStringState(id), Parcel.class);
@@ -122,7 +122,7 @@ public class ParcelContract implements ContractInterface {
         if (stub.getStringState(id) == null || stub.getStringState(id).isEmpty()) {
             String errMsg = String.format("parcel not found at id %s", id);
             System.out.println(errMsg);
-            throw new ChaincodeException(errMsg, Errors.parcel_not_found.toString();
+            throw new ChaincodeException(errMsg, Errors.parcel_not_found.toString());
         }
 
         Parcel parcel = genson.deserialize(stub.getStringState(id), Parcel.class);
